@@ -1,22 +1,17 @@
-// time page
-var buttons = document.getElementsByClassName("button");
+const buttons = document.querySelectorAll(".button, .evening");
+const dayButton = document.getElementById("day");
 
-// Iterate over each button and add an event listener
-for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function () {
-        // Hide the clicked button by setting its display to "none"
-        this.style.display = "none";
+buttons.forEach(button => {
+    button.addEventListener("click", function () {
+
+        // Hide ALL time buttons
+        buttons.forEach(b => b.style.display = "none");
+
+        // Show the entire day button
+        dayButton.style.display = "block";
     });
-}
-
-var eve_button = document.getElementById("hideButton");
-var day_button = document.getElementById("day");
-
-eve_button.addEventListener("click", function () {
-    eve_button.style.display = "none";
-    day_button.style.display = "block";
 });
 
-day_button.addEventListener("click", function () {
+dayButton.addEventListener("click", function () {
     window.location.href = "food.html";
 });
