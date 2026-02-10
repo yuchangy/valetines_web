@@ -79,4 +79,21 @@ document.addEventListener("DOMContentLoaded", function () {
             // Push into array
             activityChoices.push(activityChoice);
 
-            // Sa
+            // Save array properly
+            localStorage.setItem(
+                "activityChoices",
+                JSON.stringify(activityChoices)
+            );
+
+            // Hide only clicked activity
+            button.classList.add("hidden");
+
+            // Small delay ensures storage completes
+            setTimeout(() => {
+                window.location.href = "final.html";
+            }, 150);
+        });
+
+    });
+
+});
