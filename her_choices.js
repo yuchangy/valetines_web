@@ -13,6 +13,7 @@ const randomElement = Math.floor(Math.random() * foodArray.length);
 const foodButtons = document.querySelectorAll(".foodItem");
 const movieButtons = document.querySelectorAll(".movieItem");
 const movieContainer = document.getElementById("movie_container");
+const doneButton = document.getElementById("done_button");
 
 
 // -----------------------------
@@ -21,12 +22,13 @@ const movieContainer = document.getElementById("movie_container");
 
 function hideAllFoodButtons() {
     foodButtons.forEach(button => {
-        button.classList.add("hidden");
+        button.style.display = "none";
     });
 }
 
 function showActivities() {
-    movieContainer.style.display = "flex";
+    movieContainer.style.display = "block";
+    doneButton.classList.remove("hidden");
 }
 
 function changeHeaderToActivity() {
@@ -86,14 +88,14 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
             // Hide only clicked activity
-            button.classList.add("hidden");
-
-            // Small delay ensures storage completes
-            setTimeout(() => {
-                window.location.href = "final.html";
-            }, 150);
+            button.style.display = "none";
         });
 
+    });
+
+    // DONE BUTTON
+    doneButton.addEventListener("click", function () {
+        window.location.href = "final.html";
     });
 
 });
