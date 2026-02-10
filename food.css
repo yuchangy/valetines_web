@@ -56,4 +56,22 @@ body{
     transform: scale(1.1);
 }
 
+.doneButton{
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 18px;
+    margin: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    transition: transform 0.3s ease;
+    font-weight: bold;
+}
 
+.doneButton:hover{
+    transform: scale(1.1);
+    background-color: #45a049;
+}
