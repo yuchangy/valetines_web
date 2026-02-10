@@ -1,14 +1,25 @@
-const buttons = document.querySelectorAll(".button, .evening");
+const timeButtons = document.querySelectorAll(".button, .evening");
 const dayButton = document.getElementById("day");
 
-buttons.forEach(button => {
-    button.addEventListener("click", function () {
+function checkAllHidden() {
+    let allHidden = true;
 
-        // Hide ALL time buttons
-        buttons.forEach(b => b.style.display = "none");
+    timeButtons.forEach(button => {
+        if (button.style.display !== "none") {
+            allHidden = false;
+        }
+    });
 
-        // Show the entire day button
+    if (allHidden) {
         dayButton.style.display = "block";
+    }
+}
+
+// Attach the same behavior to all time buttons
+timeButtons.forEach(button => {
+    button.addEventListener("click", function () {
+        this.style.display = "none";
+        checkAllHidden();
     });
 });
 
