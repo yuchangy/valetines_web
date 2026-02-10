@@ -1,35 +1,28 @@
 function displayChoices() {
-    var food_choice = localStorage.getItem('userFoodSelection');
-    var movie_choice = localStorage.getItem('movieSelection');
 
-    // Get all elements with the class 'result_choices'
-    var result_choices = document.querySelectorAll('.result_choices');
+    const foodChoice = localStorage.getItem("userFoodSelection");
 
-    // Loop through each result choice
-    result_choices.forEach(function (choice) {
-        // Display each result choice
-        choice.style.display = 'block';
+    const activityArray = JSON.parse(localStorage.getItem("activityChoices")) || [];
+    const activityChoice = activityArray.length > 0 ? activityArray[0] : "None";
 
-        // Get the text of the header
-        var headerText = choice.querySelector('h2').textContent;
-
-        // Append food choice to the corresponding header
-        if (headerText === 'Food Choice: ') {
-            choice.querySelector('span').textContent = food_choice;
-        }
-        // Append movie choice to the corresponding header
-        else if (headerText === 'Movie choice: ') {
-            choice.querySelector('span').textContent = movie_choice;
-        }
+    // Show sections
+    const resultChoices = document.querySelectorAll(".result_choices");
+    resultChoices.forEach(section => {
+        section.style.display = "block";
     });
+
+    // Insert text
+    document.getElementById("foodChoice").textContent = foodChoice;
+    document.getElementById("activityChoice").textContent = activityChoice;
 }
 
-// Call the function when the button is clicked
-document.addEventListener('DOMContentLoaded', function () {
-    var result_button = document.getElementById('result_button');
+document.addEventListener("DOMContentLoaded", function () {
 
-    result_button.addEventListener('click', function () {
-        result_button.style.display = 'none'; // Hide the button
-        displayChoices(); // Call the function to display choices
+    const resultButton = document.getElementById("result_button");
+
+    resultButton.addEventListener("click", function () {
+        resultButton.style.display = "none";
+        displayChoices();
     });
+
 });
