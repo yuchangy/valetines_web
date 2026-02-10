@@ -1,56 +1,99 @@
-//storage
-function getUserChoice(choiceKey, choiceValue) {
-    localStorage.setItem(choiceKey, choiceValue);
-}
+// -----------------------------
+// STATE
+// -----------------------------
 
-function saveUserChoice(choiceKey) {
-    return localStorage.getItem(choiceKey);
+let dinnerChosen = false;
+let activityChoices = [];
 
-}
-//food Array:
+const header = document.getElementById("main_header");
+
+// Food options
 const foodArray = ["Chinese", "Japanese", "Korean", "Italian", "American"];
-const randomElement = Math.floor(Math.random() * foodArray.length)
-var food_buttons = document.querySelectorAll('.foodItem');
-var movie_buttons = document.querySelectorAll('.movieItem');
-var movie_style = document.getElementById('movie_container');
+const randomElement = Math.floor(Math.random() * foodArray.length);
+
+// Buttons / Containers
+const foodButtons = document.querySelectorAll('.foodItem');
+const movieButtons = document.querySelectorAll('.movieItem');
+const movieContainer = document.getElementById('movie_container');
 
 
-function hideAllButtons() {
-    food_buttons.forEach(function (button) {
-        button.classList.add('hidden');
-    });
+// -----------------------------
+// FUNCTIONS
+// -----------------------------
+
+function showActivities() {
+    movieContainer.style.display = "flex";
 }
 
-function appearMovie() {
-    movie_style.style.display = "";
+function changeHeaderToActivity() {
+    header.textContent = "Choice of Activity";
 }
+
+
+// -----------------------------
+// FOOD SELECTION
+// -----------------------------
 
 document.addEventListener('DOMContentLoaded', function () {
-    food_buttons.forEach(function (button) {
+
+    foodButtons.forEach(function (button) {
+
         button.addEventListener('click', function () {
-            var food_choice = button.textContent;
-            if (food_choice !== 'Random') {
-                localStorage.setItem('userFoodSelection', food_choice);
+
+            const foodChoice = button.textContent;
+
+            // Save food selection
+            if (foodChoice !== "Random") {
+                localStorage.setItem('userFoodSelection', foodChoice);
             } else {
                 localStorage.setItem('userFoodSelection', foodArray[randomElement]);
-
             }
-            hideAllButtons();
-            appearMovie();
+
+            // Mark dinner as chosen
+            dinnerChosen = true;
+
+            // Change header
+            if (dinnerChosen) {
+                changeHeaderToActivity();
+            }
+
+            // Hide only clicked button
+            button.classList.add("hidden");
+
+            // Show activity options
+            showActivities();
         });
+
     });
+
 });
 
 
-//Movie Array:
+// -----------------------------
+// ACTIVITY SELECTION
+// -----------------------------
+
 document.addEventListener('DOMContentLoaded', function () {
-    movie_buttons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            var movie_choice = button.textContent;
-            localStorage.setItem('movieSelection', movie_choice);
-            var choice = localStorage.getItem('movieSelection');
-            window.location.href = 'final.html'
-        });
-    });
-});
 
+    movieButtons.forEach(function (button) {
+
+        button.addEventListener('click', function () {
+
+            const activityChoice = button.textContent;
+
+            // Add to array
+            activityChoices.push(activityChoice);
+
+            // Store array for next page
+            localStorage.setItem('activityChoices', JSON.stringify(activityChoices));
+
+            // Hide clicked button
+            button.classList.add("hidden");
+
+            // Go to final page
+            window.location.href = "final.html";
+        });
+
+    });
+
+});
