@@ -1,6 +1,6 @@
 var noButton = document.getElementById('noButton');
 
-noButton.addEventListener('mouseenter', function () {
+noButton.addEventListener('mouseenter', function () { //allows the button to move around
     noButton.classList.add('custom-hover')
     var x = Math.random() * (window.innerWidth
         - document.getElementById('noButton').offsetWidth) - 85;
