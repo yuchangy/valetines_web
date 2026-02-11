@@ -3,17 +3,31 @@ function displayChoices() {
     const foodChoice = localStorage.getItem("userFoodSelection");
 
     const activityArray = JSON.parse(localStorage.getItem("activityChoices")) || [];
-    const activityChoice = activityArray.length > 0 ? activityArray[0] : "None";
-
+    
     // Show sections
     const resultChoices = document.querySelectorAll(".result_choices");
     resultChoices.forEach(section => {
         section.style.display = "block";
     });
 
-    // Insert text
-    document.getElementById("foodChoice").textContent = foodChoice;
-    document.getElementById("activityChoice").textContent = activityChoice;
+    // Insert food choice text
+    document.getElementById("foodChoice").textContent = foodChoice || "None";
+    
+    // Insert all activity choices
+    const activityContainer = document.getElementById("activityChoice");
+    activityContainer.innerHTML = ""; // Clear existing content
+    
+    if (activityArray.length > 0) {
+        // Create a list of activities
+        activityArray.forEach((activity, index) => {
+            const activityItem = document.createElement("div");
+            activityItem.className = "activity-item";
+            activityItem.textContent = `${index + 1}. ${activity}`;
+            activityContainer.appendChild(activityItem);
+        });
+    } else {
+        activityContainer.textContent = "None";
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
