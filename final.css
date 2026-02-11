@@ -3,15 +3,18 @@ body{
     flex-direction: column;
     align-items: center; /* Centers items horizontally */
     justify-content: center; /* Centers items vertically */
-    height: 100vh; /* Make the body fill the viewport height */
+    min-height: 100vh; /* Make the body fill the viewport height */
     margin: 0; /* Remove default body margin */
-    padding: 0; /* Remove default body padding */ 
-    background-color: #bbd0c9; 
+    padding: 20px; /* Add padding for smaller screens */ 
+    background-color: #bbd0c9;
+    box-sizing: border-box;
 }
 
 .result{
     font-family: 'Pacifico';
-    font-size: 30px;
+    font-size: clamp(24px, 4vw, 30px); /* Responsive font size */
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .resultbtn{
@@ -30,11 +33,54 @@ body{
 .resultbtn:hover{
     transform: scale(1.1);
 }
-.result-choices{
+.result_choices{
     font-family: 'Pacifico';
-    font-size: 30px;
-    display:none;
+    font-size: clamp(20px, 3vw, 30px); /* Responsive font size */
+    display: none;
+    margin: 15px 0;
+    text-align: center;
+    max-width: 90vw; /* Prevent overflow on small screens */
+    word-wrap: break-word;
+}
+.result_choices h2{
+    margin: 10px 0;
+    font-size: clamp(20px, 3vw, 30px);
 }
 .appear{
     display: block;
+}
+
+.activity-item{
+    margin: 8px 0;
+    padding: 8px 15px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    font-size: clamp(18px, 2.5vw, 26px); /* Slightly smaller than header */
+    display: inline-block;
+    min-width: 200px;
+}
+
+.art_container{
+    margin: 20px 0;
+}
+
+.giphy-embed{
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .result{
+        font-size: 22px;
+    }
+    
+    .result_choices h2{
+        font-size: 20px;
+    }
+    
+    .activity-item{
+        font-size: 18px;
+        min-width: 150px;
+    }
 }
